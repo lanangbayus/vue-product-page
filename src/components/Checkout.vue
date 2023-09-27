@@ -25,8 +25,12 @@
           </td>
           <th scope="row">{{ item.product.name }}</th>
           <th scope="text-center">{{ item.qty }}</th>
-          <th scope="text-right">{{ Number(item.product.price) }}</th>
-          <th scope="text-right">{{ Number(item.product.price * item.qty) }}</th>
+          <th scope="text-right">
+            <price class="ms-2" :value="Number(item.product.price)"></price>
+          </th>
+          <th scope="text-right">
+            <price class="ms-2" :value="Number(item.product.price * item.qty)"></price>
+          </th>
         </tr>
       </tbody>
     </table>
