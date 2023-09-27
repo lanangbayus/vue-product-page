@@ -1,7 +1,7 @@
 import "./assets/main.css";
-
 import { createApp } from "vue";
 import App from "./App.vue";
+import router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import "animate.css/animate.css";
@@ -10,4 +10,4 @@ import { faShoppingCart, faDollarSign } from "@fortawesome/free-solid-svg-icons"
 
 library.add(faShoppingCart, faDollarSign);
 
-createApp(App).mount("#app");
+createApp(App).use(router).mount("#app");

@@ -1,25 +1,18 @@
 <template>
-  <div class="container-fluid" id="app">
-    <h1 class="text-center">Price Vue Shop</h1>
-
-    <navbar
-      :cart="cart"
-      :cartQty="cartQty"
-      :cartTotal="cartTotal"
-      @toggle="toggleSliderStatus"
-      @delete="deleteItem"></navbar>
-
-    <price-slider :sliderStatus="style.sliderStatus" :maximum.sync="maximum"></price-slider>
-
-    <product-list :maximum="maximum" :products="products" @add="addItem"></product-list>
-  </div>
+  <div class="container mt-2" id="app"></div>
+  <router-view
+    :cart="cart"
+    :cartQty="cartQty"
+    :cartTotal="cartTotal"
+    :sliderStatus="style.sliderStatus"
+    :maximum.sync="maximum"
+    :products="products"
+    @toggle="toggleSliderStatus"
+    @delete="deleteItem"
+    @add="addItem"></router-view>
 </template>
 
 <script>
-import ProductList from "./components/ProductList.vue";
-import PriceSlider from "./components/PriceSlider.vue";
-import Navbar from "./components/Navbar.vue";
-
 export default {
   name: "app",
   data: function () {
@@ -32,11 +25,7 @@ export default {
       },
     };
   },
-  components: {
-    ProductList,
-    PriceSlider,
-    Navbar,
-  },
+
   mounted: function () {
     fetch("https://hplussport.com/api/products/order/price")
       .then((response) => response.json())

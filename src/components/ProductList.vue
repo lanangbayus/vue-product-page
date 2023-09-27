@@ -2,7 +2,7 @@
   <transition-group name="fade" tag="div" @beforeEnter="before" @enter="enter" @leave="leave">
     <div class="row mb-3 align-items-center" v-for="(item, index) in showItem" :key="index" :data-index="index">
       <div class="col-1 m-auto">
-        <button class="btn btn-info" @click="$emit('add', item)">+</button>
+        <button class="btn btn-info" @click="$emit('add-item', item)">+</button>
       </div>
       <div class="col-sm-4">
         <img :src="item.image" :alt="item.name" class="img-fluid d-block" />
@@ -31,21 +31,21 @@ export default {
     showItem: function () {
       let max = this.maximum;
       return this.products.filter(function (item) {
-        return item.price <= max;
+        return Math.trunc(item.price) <= max;
       });
     },
   },
   methods: {
-    before(el) {
+    before: function (el) {
       el.className = "d-none";
     },
-    enter(el) {
-      var delay = el.dataset.index * 100; // nilai dari data attribut index yang di dapatkan dari data-index
+    enter: function (el) {
+      var delay = el.dataset.index * 100;
       setTimeout(function () {
         el.className = "row d-flex mb-3 align-items-center animated fadeInRight";
       }, delay);
     },
-    leave(el) {
+    leave: function (el) {
       var delay = el.dataset.index * 100;
       setTimeout(function () {
         el.className = "row d-flex mb-3 align-items-center animated fadeOutRight";
@@ -54,5 +54,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

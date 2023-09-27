@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-light fixed-top">
     <div class="navbar-text ms-auto d-flex">
-      <button class="btn btn-sm btn-outline-success" @click="$emit('toggle')">
+      <button class="btn btn-sm btn-outline-success" @click="$parent.$emit('toggle')">
         <font-awesome-icon icon="dollar-sign"></font-awesome-icon>
       </button>
       <div class="dropdown ms-2" v-if="cart.length > 0">
@@ -28,11 +28,14 @@
                 href="#"
                 class="badge rounded-pill bg-danger text-white ms-1"
                 style="text-decoration: none"
-                @click.stop="$emit('delete', index)">
+                @click.stop="$parent.$emit('delete-item', index)">
                 x
               </a>
             </div>
           </div>
+          <router-link class="btn btn-sm btn-outline-info text-dark float-end mr-2" to="/checkout">
+            Checkout
+          </router-link>
         </div>
       </div>
     </div>
